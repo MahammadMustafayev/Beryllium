@@ -1,0 +1,40 @@
+﻿@model List<FirstSlider>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Object/Views/Shared/_ObjectLayout.cshtml";
+    int order = 0;
+}
+
+<div class="container-fluid">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <h1>Authors:</h1>
+        <a asp-action="Create" asp-controller="FirstSlider" class="btn btn-primary">Create</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Title </th>
+                <th scope="col">Image </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                order++;
+                <tr>
+                    <th scope="row">@order</th>
+                    <td>@item.Title</td>             
+                    <td><img src="~/img/firstslider/@item.Image" style="max-width:100px" /></td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="FirstSlider" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                        <a asp-action="Delete" asp-controller="FirstSlider" asp-route-id="@item.Id" class="btn btn-danger btn-sweet-delete">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
